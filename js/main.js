@@ -10,15 +10,15 @@ window.SITE_CONFIG = {
   phoneDisplay: "+91 99726 26256",
   phoneE164: "+919972626256",
   whatsappNumber: "919972626256",
-  whatsappDefaultMessage: "Hi! I'd like to enquire about a stay at The Coorg Chimm's Camptime Homestay.",
+  whatsappDefaultMessage: "Hi! I'd like to enquire about booking the entire homestay at The Coorg Chimm's Camptime Homestay.",
   addressLines: [
     "Odiyappana House, Post, Suntikoppa",
     "Gaddehalla, Uluguli Village, Uluguli",
     "Karnataka 571237, India"
   ],
   googleMapsUrl: "https://maps.app.goo.gl/PQrB6bmcCKveKeAh9",
-  checkIn: "2:30 PM",
-  checkOut: "12:00 PM"
+  checkIn: "",
+  checkOut: ""
 };
 
 (function () {
