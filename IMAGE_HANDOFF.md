@@ -24,3 +24,9 @@ Verified accommodation information:
 - Maximum 12 guests
 
 Important: bedrooms are displayed for information only and are NOT separate bookable rooms.
+
+
+## Researched update
+- Added 10 local Things To Do cards with approximate drive times and Google Maps links.
+- Added reusable Wikimedia Commons image sources for selected attractions; licensing notes are in ATTRACTION_IMAGE_CREDITS.md.
+- Updated location and travel information using current web research.
