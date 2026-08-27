@@ -290,6 +290,18 @@ body{padding-bottom:64px;}
 .img-ph.ratio-1-1{aspect-ratio:1/1;}
 .img-ph.ratio-3-4{aspect-ratio:3/4;}
 .img-ph.tall{aspect-ratio:3/4;}
+
+.img-ph > img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.img-ph.photo-natural > img{
+  object-fit:contain;
+  background:var(--beige-100);
+}
+
 .img-ph span{
   font-family:var(--font-body);font-size:0.78rem;color:var(--coffee-800);
   text-align:center;padding:1rem;font-weight:600;line-height:1.5;
