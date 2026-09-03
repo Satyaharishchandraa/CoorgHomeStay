@@ -14,4 +14,9 @@ The Things to Do page currently uses Wikimedia Commons photographs for selected 
 - View of Mandalpatti in Coorg — CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:View_of_Mandalpatti_in_Coorg.jpg
 - Abbey Falls in Kodagu — CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Abbey_Falls_in_Kodagu.jpg
 
-Chiklihole currently uses a simple scenic card rather than an unverified third-party photograph.
+- Chiklihole Reservoir — official Kodagu District, Government of Karnataka image: https://kodagu.nic.in/en/gallery/chiklihole-reservoir/ (image hosted by the Government of Karnataka/NIC; use subject to the source site's applicable terms)
+
+Chiklihole is represented using the official Kodagu District tourism gallery image rather than an unverified third-party photograph.
+
+
+Homepage and Travel Guide also reuse the same listed Wikimedia Commons sources; their license/source entries above apply to those images as well.
