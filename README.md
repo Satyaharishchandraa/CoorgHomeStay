@@ -1,95 +1,80 @@
 # The Coorg Chimm's Camptime Homestay — Website
 
-Static, dependency-free HTML/CSS/JS build (no framework/build step required — open `index.html` directly, or deploy the folder as-is to any static host).
+Static, dependency-free HTML/CSS/JS (no framework or build step — open `index.html` directly, or deploy the folder as-is to any static host).
 
 ## 1. Project structure
 
 ```
-coorg-homestay/
-├── index.html               Home
-├── rooms.html                Rooms / Accommodation
-├── about.html                About Us
-├── gallery.html               Gallery (filterable masonry)
-├── things-to-do.html          Things to Do in Coorg (attraction cards)
-├── location.html               Location & directions
-├── contact.html                Contact / booking enquiry form
-├── privacy-policy.html
-├── terms.html
-├── travel-guide.html            SEO article: Coorg Travel Guide
-├── best-time-to-visit.html       SEO article: seasonal guide
-├── coffee-experience.html        SEO article: coffee plantations
-├── how-to-reach.html             SEO article: road/rail/air
-├── css/style.css                Full design system (tokens, components)
-├── js/main.js                   SITE_CONFIG (phone/WhatsApp/address/map — edit once here),
-│                                 nav toggle, gallery filter, enquiry form → WhatsApp handoff
-├── images/favicon.svg            Placeholder mark (replace with real logo if you have one)
-├── robots.txt
-└── sitemap.xml
+index.html                     Home
+rooms.html                     The Entire Homestay (accommodation overview)
+about.html                     About Us
+gallery.html                   Gallery (filterable, real photography)
+things-to-do.html              Things to Do in Coorg — 10 attractions, drive times, Maps links
+10-best-places-to-visit.html   Quick-reference listicle version of the above
+location.html                  Location, address, Google Maps embed
+contact.html                   Contact / booking enquiry (entire-property, not per-room)
+privacy-policy.html
+terms.html
+travel-guide.html              SEO guide + external resources section
+best-time-to-visit.html        SEO guide
+coffee-experience.html         SEO guide
+how-to-reach.html              SEO guide
+css/style.css                  Full design system (tokens, components)
+js/main.js                     SITE_CONFIG (phone/WhatsApp/address — edit once here),
+                                nav toggle, gallery filter, enquiry form -> WhatsApp handoff,
+                                graceful fallback for any hotlinked image that fails to load
+images/                        Real owner-supplied property photography (WebP)
+robots.txt
+sitemap.xml
+IMAGE_HANDOFF.md               Where each property photo is used
+ATTRACTION_IMAGE_CREDITS.md    Licenses for the Wikimedia Commons attraction photos
 ```
-Build tooling (`src/`, `partials/`, `build.py`) that assembled these pages was intentionally left out of this delivered folder — the HTML files here are the full, final, standalone output; you don't need Python or Node to use or host them.
 
-## 2. Design system
-Deep forest green / roasted-coffee brown / warm beige / off-white, one muted clay accent — no gradients, no stock-photo look. Display type is Fraunces (serif), body is Work Sans. Signature motif: a hand-weight "contour line" (topographic elevation line) used as the section divider instead of plain hairlines, plus a mist-fade-in on the hero — a nod to Coorg's hill elevation and fog rather than a generic template flourish.
+## 2. Accommodation model - read this first
+The property is booked as **one private entire homestay**, not room-by-room: 3 bedrooms, 2 washrooms, 1 kitchen, 4-12 guests. Every page that mentions the stay (home, "rooms.html", contact, footer copy, JSON-LD) reflects this. There is a single "Enquire for Your Stay" / "Send Booking Enquiry" call to action - no per-room pricing or per-room booking anywhere on the site.
 
-## 3. Image placeholders
-No real property photos were available, so every image slot is a clearly labelled dashed-border placeholder (`<div class="img-ph">…[ADD PHOTO: …]…</div>`) instead of a stock photo. Replace each with a real `<img>` tag: descriptive filename (e.g. `coorg-homestay-nature-view.webp`), meaningful alt text, explicit `width`/`height`, `loading="lazy"` (skip lazy-loading on the hero image only), and WebP/AVIF format where possible.
+## 3. Design system
+Deep forest green / roasted-coffee brown / warm beige / off-white, one muted clay accent. Display type is Fraunces (serif), body is Work Sans. Signature motif: a hand-weight "contour line" (topographic elevation line) used as the section divider, plus a mist-fade-in on the hero.
 
-## 4. SEO implementation
+## 4. Images
+Real property photography (owner-supplied) is in `images/` as optimized WebP, with descriptive filenames and accurate alt text - see `IMAGE_HANDOFF.md` for exactly where each one is used. The homepage hero and the "Entire Homestay" page's lead photo are not lazy-loaded and use `fetchpriority="high"`; everything below the fold uses `loading="lazy"`.
+
+Attraction photos on the Things to Do / Explore Kodagu sections are hotlinked from Wikimedia Commons - see `ATTRACTION_IMAGE_CREDITS.md` for the license on each. **Before a production launch, download these locally, re-host them from `images/`, and keep the license notes** - this environment could not confirm every hotlinked URL resolves (no outbound network access here to test), so `js/main.js` includes an automatic fallback: any image that fails to load degrades to the site's existing dashed-placeholder style instead of a broken-image icon, but this should be treated as a safety net, not a substitute for verifying/self-hosting the files.
+
+## 5. SEO implementation
 - Semantic HTML5, one `<h1>` per page, logical H2/H3 hierarchy
-- Unique `<title>` and meta description per page
+- Unique `<title>` and meta description per page (14 pages)
 - Canonical URL on every page
-- Open Graph + Twitter Card metadata on every page
-- `robots.txt` + `sitemap.xml` (13 URLs)
+- Open Graph + Twitter Card metadata
+- `robots.txt` + `sitemap.xml` (14 URLs, kept in sync)
 - Breadcrumb navigation (visual + `BreadcrumbList` JSON-LD) on every subpage
-- Internal linking between home, rooms, things-to-do, location, contact and the four guide articles
+- Internal linking between home, the homestay page, things-to-do, the 10-best-places quick guide, location, contact and the guide articles
 
-## 5. Structured data (JSON-LD)
-- **LodgingBusiness** (homepage): name, address, phone, geo (placeholder), check-in/out, amenities, `aggregateRating` (4.5★ / 120+ reviews, matching the verified Google figures), `sameAs` placeholders for social profiles
+## 6. Structured data (JSON-LD)
+- **LodgingBusiness** (homepage): name, address, phone, verified amenities, `aggregateRating` (4.5 stars / 120+ Google reviews, shown as a current Google listing statistic), no invented coordinates, ratings, or prices
 - **WebSite** (homepage)
 - **BreadcrumbList** (every subpage)
-- No `Review`/`FAQPage` structured data was added sitewide by default — see the SEO checklist below before enabling it.
 
-## 6. Local SEO strategy
-NAP (Name, Address, Phone) is identical and consistent across the site footer, the Contact page, the Location page and the JSON-LD. `hasMap` in the schema and every "Get Directions" button point to the Google Maps link you provided. Content naturally references Uluguli, Suntikoppa, Kodagu and Madikeri without stuffing keywords into any single page.
+## 7. Local SEO - NAP
+Kept identical everywhere (footer of all 14 pages, contact page, location page, JSON-LD):
 
-## 7. Deployment instructions
-This is a static site — any static host works:
-1. **Netlify / Vercel**: drag-and-drop the folder (or connect a Git repo) — no build command needed.
-2. **GitHub Pages**: push the folder to a repo and enable Pages on the main branch.
-3. **Any shared hosting / cPanel**: upload the contents via FTP into the public root.
-4. Update `https://www.coorgchimmscamptime.com/` in every canonical/OG/JSON-LD tag and in `sitemap.xml` to your real final domain before launch (find-and-replace across the folder).
-5. Submit `sitemap.xml` in Google Search Console once the domain is live.
+> The Coorg Chimm's Camptime Homestay
+> Gaddehalla, Uluguli Village, Suntikoppa, Kodagu, Karnataka 571237, India
+> +91 99726 26256
 
-## 8. Information still needed from you
-- [ ] Real photography for every `[ADD PHOTO: …]` placeholder
-- [ ] Confirmed room names, descriptions, occupancy, amenities and prices (or a clear "rates on enquiry" policy)
-- [ ] Exact GPS coordinates (latitude/longitude) for the schema `geo` field
-- [ ] A short, real "About" story in the owner's words
-- [ ] 3–5 genuine Google reviews you'd like featured (name, rating, text) — do not publish placeholder reviews as real
-- [ ] Verified distances/travel times from the homestay to Madikeri, Suntikoppa and each attraction
-- [ ] Social media links (Instagram/Facebook), if any, for the `sameAs` schema field
-- [ ] A finalised cancellation policy and house rules for the Terms page, and a data-handling confirmation for the Privacy Policy (both are legal placeholders — have a professional review them before launch)
-- [ ] An Open Graph cover image (1200×630px) at `images/og-cover.jpg`
-- [ ] Confirmation of where booking-enquiry form submissions should ultimately go (currently the form hands off to WhatsApp with the enquiry pre-filled; wire it to email/CRM if preferred)
+## 8. Google Maps
+`location.html` embeds a keyless Google Maps iframe built from the verified address (`google.com/maps?q=...&output=embed`), and every "Get Directions" button links to the property's Google Maps share URL. No coordinates were invented.
 
-## 9. Pre-launch SEO checklist
-- [ ] Replace all `[ADD …]` placeholders sitewide (`grep -r "\[ADD" .` / `grep -r "\[CONFIRM" .` to find them all)
-- [ ] Add real photos with descriptive filenames + alt text; compress to WebP/AVIF
-- [ ] Add the Google Maps `<iframe>` embed on the Location page (and homepage location section)
-- [ ] Add real coordinates to the LodgingBusiness schema
-- [ ] Validate all JSON-LD in Google's Rich Results Test before launch
-- [ ] Only add `FAQPage` structured data if you confirm it still meets Google's current eligibility rules at launch time (these change periodically)
-- [ ] Only add `Review`/rating markup once genuine reviews are in place, per Google's guidelines
-- [ ] Set the real production domain everywhere (canonicals, OG, sitemap, robots.txt)
-- [ ] Run Lighthouse (Performance/Accessibility/Best Practices/SEO) after adding real images, since placeholders are lightweight CSS blocks that won't reflect real image weight
-- [ ] Verify color contrast once real photography sits behind any text overlays
-- [ ] Submit sitemap to Google Search Console; verify property ownership
+## 9. Deployment
+1. **Netlify / Vercel**: drag-and-drop the folder, or connect a Git repo - no build command needed.
+2. **GitHub Pages**: push the folder and enable Pages on the main branch.
+3. **Any shared hosting / cPanel**: upload via FTP into the public root.
+4. Before launch, find-and-replace `https://www.coorgchimmscamptime.com/` with the real production domain across every canonical/OG/JSON-LD tag and in `sitemap.xml`.
+5. Submit `sitemap.xml` in Google Search Console once live.
 
-## 10. Self-audit — known gaps in this build
-- **Images**: every visual is a CSS placeholder, by design (no real photos or stock photography were used, per the brief) — this is the single biggest thing to finish before launch.
-- **Reviews**: homepage/FAQ mention the real 4.5★/120+ rating, but individual reviews are placeholders pending your input.
-- **Map embed**: the Location and homepage map sections need the actual `<iframe>` embed code from Google Maps.
-- **Coordinates**: schema `geo` fields are placeholders — real lat/long will sharpen local map-pack relevance.
-- **Legal pages**: Privacy Policy and Terms are structurally complete but explicitly marked as placeholders pending legal review.
-- **No broken/orphan pages**: every page is reachable from the header/footer nav and internally linked at least once; sitemap and robots.txt are in sync with the 13 shipped pages.
-- **Performance**: with placeholder CSS blocks instead of images, the site is currently very light; real-world Lighthouse scores should be re-checked once photography is added, particularly LCP.
+## 10. Still open (not blocking, but worth doing before/soon after launch)
+- Download and self-host the Wikimedia attraction photos (see section 4)
+- Real GPS coordinates, if you want them added to the schema `geo` field
+- Genuine guest review quotes, if you'd like 2-3 featured on the homepage (only the real aggregate rating is shown today)
+- Legal review of `privacy-policy.html` / `terms.html` - both use neutral, non-invented policy language today ("confirmed directly with the property") and are ready to publish as-is, but a professional pass is still recommended
+- An Open Graph cover image at `images/og-cover.webp` is in place; swap it for a preferred hero-style shot if you'd like a different one for social previews

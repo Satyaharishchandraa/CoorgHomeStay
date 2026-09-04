@@ -1,23 +1,17 @@
-# Attraction Image Credits
+# Attraction image sources and licenses
 
-The destination cards in this static website use locally hosted, original SVG illustrations rather than hot-linked third-party photographs. This avoids broken external image requests, improves page performance, and avoids unlicensed image use.
+Property photographs in `images/` are supplied by the property owner.
 
-Illustrations created specifically for this website:
-- Coffee & Plantations
-- Waterfalls & Nature
-- Hills & Viewpoints
-- Wildlife & Adventure
-- Culture & Heritage
-- Local Food & Experiences
-- Greenway Coffee Island Plantation Tour
-- Kaveri Nisargadhama
-- Chiklihole Reservoir
-- Raja's Seat
-- Madikeri Fort
-- Harangi Reservoir
-- Abbey Falls
-- Dubare Elephant Camp
-- Namdroling Monastery / Golden Temple
-- Mandalpatti Peak
+The Things to Do page currently uses Wikimedia Commons photographs for selected attractions. They are externally hosted for now; for a final production deployment, preferably download and optimize them locally while preserving license requirements.
 
-These are illustrations, not photographs of the attractions. Attraction names, descriptions and approximate drive times are presented as travel-planning information and should not be interpreted as photographic evidence.
+- Coffee Plantation in Coorg — CC0: https://commons.wikimedia.org/wiki/File:Coffee_Plantation_in_Coorg.jpg
+- Raja's Seat Madikeri — CC BY-SA: https://commons.wikimedia.org/wiki/File:Raja%27s_Seat_Madikeri.jpg
+- Madikeri Fort — Creative Commons license shown on file page: https://commons.wikimedia.org/wiki/File:Madikeri_fort.jpg
+- Nisargadhama — CC BY-SA: https://commons.wikimedia.org/wiki/File:Nisargadhama.jpg
+- Elephant, Dubare Elephant Camp, Coorg, India — CC0: https://commons.wikimedia.org/wiki/File:Elephant,_Dubare_Elephant_Camp,_Coorg,_India.jpg
+- Namrodoling Monastery Bylakuppe — CC BY 4.0: https://commons.wikimedia.org/wiki/File:Namrodoling_Monastery_Bylakuppe_at_the_Tibetan_Settlement_near_Kushalnagar,_Karanataka,India_01.jpg
+- Harangi Reservoir, Coorg — CC BY 4.0: https://commons.wikimedia.org/wiki/File:Harangi_Reservoir,_Coorg.jpg
+- View of Mandalpatti in Coorg — CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:View_of_Mandalpatti_in_Coorg.jpg
+- Abbey Falls in Kodagu — CC BY-SA 4.0: https://commons.wikimedia.org/wiki/File:Abbey_Falls_in_Kodagu.jpg
+
+Chiklihole currently uses a simple scenic card rather than an unverified third-party photograph.
