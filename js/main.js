@@ -12,8 +12,8 @@ window.SITE_CONFIG = {
   whatsappNumber: "919972626256",
   whatsappDefaultMessage: "Hi! I'd like to enquire about booking the entire homestay at The Coorg Chimm's Camptime Homestay.",
   addressLines: [
-    "Odiyappana House, Post, Suntikoppa",
-    "Gaddehalla, Uluguli Village, Uluguli",
+    "Gaddehalla, Uluguli Village",
+    "Suntikoppa, Kodagu",
     "Karnataka 571237, India"
   ],
   googleMapsUrl: "https://maps.app.goo.gl/PQrB6bmcCKveKeAh9",
@@ -148,10 +148,36 @@ window.SITE_CONFIG = {
     });
   }
 
+  function initImageFallback() {
+    /* Some attraction photos are hotlinked from Wikimedia Commons (see
+       ATTRACTION_IMAGE_CREDITS.md). If one ever fails to load — renamed
+       file, network block, etc. — fall back to the same dashed
+       placeholder style used elsewhere on the site instead of showing
+       a broken-image icon. */
+    document.addEventListener(
+      "error",
+      function (e) {
+        var t = e.target;
+        if (t && t.tagName === "IMG") {
+          var wrap = t.closest(".img-ph");
+          if (wrap && !wrap.classList.contains("img-fallback")) {
+            wrap.classList.add("img-fallback");
+            var label = document.createElement("span");
+            label.textContent = t.alt || "Image unavailable";
+            wrap.appendChild(label);
+            t.remove();
+          }
+        }
+      },
+      true
+    );
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     applyConfig();
     initMobileMenu();
     initGalleryFilters();
     initEnquiryForm();
+    initImageFallback();
   });
 })();
