@@ -248,6 +248,23 @@ section{padding:var(--space-5) 0;}
 body{padding-bottom:64px;}
 @media(min-width:960px){body{padding-bottom:0;}}
 
+/* ---------- Sticky mobile CTA bar (legacy markup alias) ---------- */
+.mobile-bottom-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:80;
+  display:flex;gap:1px;
+  background:var(--line);
+  box-shadow:0 -6px 18px rgba(28,43,26,0.18);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.mobile-bottom-cta a{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:0.5em;
+  min-height:58px;padding:0.85rem 0.5rem;
+  font-weight:600;font-size:0.92rem;
+  background:var(--forest-700);color:var(--white);
+}
+.mobile-bottom-cta a + a{background:#3c5734;}
+@media(min-width:960px){.mobile-bottom-cta{display:none;}}
+
 /* ---------- Highlight / feature grid ---------- */
 .grid{display:grid;gap:1.75rem;}
 .grid-2{grid-template-columns:1fr;}
