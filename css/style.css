@@ -400,3 +400,19 @@ body{padding-bottom:64px;}
 }
 .skip-link:focus{left:1rem;top:1rem;}
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+/* ---------- Kannada language experience ---------- */
+.language-switcher{white-space:nowrap;}
+.language-modal{position:fixed;inset:0;background:rgba(18,28,17,.68);backdrop-filter:blur(6px);z-index:10000;display:grid;place-items:center;padding:1.25rem;}
+.language-modal-card{width:min(560px,100%);background:var(--beige-100);border:1px solid rgba(28,43,26,.14);border-radius:var(--radius);padding:2rem;box-shadow:0 24px 80px rgba(0,0,0,.22);text-align:center;}
+.language-modal-kicker{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--clay-600);margin-bottom:.8rem;}
+.language-modal-card h2{font-family:var(--font-display);font-size:clamp(1.8rem,5vw,2.5rem);margin:0 0 .8rem;color:var(--forest-900);}
+.language-modal-card p{max-width:45ch;margin:0 auto 1.4rem;color:var(--ink-700);}
+.language-modal-actions{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;}
+.language-modal-actions .dark{color:var(--forest-900);border-color:var(--forest-900);}
+html[lang="kn"] body{font-family:'Noto Sans Kannada','Nudi','Tunga',var(--font-body),sans-serif;}
+html[lang="kn"] h1,html[lang="kn"] h2,html[lang="kn"] h3,html[lang="kn"] h4,.kn-display{font-family:'Noto Serif Kannada','Nudi','Tunga',var(--font-display),serif;letter-spacing:0;}
+html[lang="kn"] .brand{font-family:'Noto Serif Kannada','Nudi','Tunga',var(--font-display),serif;}
+html[lang="kn"] .eyebrow{letter-spacing:.08em;}
+html[lang="kn"] .btn{font-family:'Noto Sans Kannada','Nudi','Tunga',var(--font-body),sans-serif;}
+@media(max-width:639px){html[lang="kn"] body{font-size:1rem;} html[lang="kn"] h1{line-height:1.25;} html[lang="kn"] h2{line-height:1.3;} .language-modal-card{padding:1.5rem 1.2rem;} .language-modal-actions{flex-direction:column;} .language-modal-actions .btn{width:100%;}}

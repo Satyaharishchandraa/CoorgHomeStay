@@ -1,0 +1,2 @@
+/* Kannada typography layer. Sanchaya is the Kannada font catalogue; this stack uses Unicode-safe Kannada rendering with Sanchaya-listed font names as local fallbacks. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Serif+Kannada:wght@500;600;700&display=swap");
