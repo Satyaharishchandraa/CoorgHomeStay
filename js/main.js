@@ -153,5 +153,16 @@ window.SITE_CONFIG = {
     initMobileMenu();
     initGalleryFilters();
     initEnquiryForm();
+
+    /* The cinematic layer is deliberately loaded only where it adds value.
+       It is progressive enhancement: all original content and booking paths
+       continue to work when JavaScript, WebGL, or the CDN is unavailable. */
+    var page = window.location.pathname.toLowerCase();
+    if (/(^|\/)index\.html$/.test(page) || /(^|\/)gallery\.html$/.test(page) || /\/$/.test(page)) {
+      var cinematic = document.createElement("script");
+      cinematic.src = page.indexOf("/kn/") !== -1 ? "../js/cinematic.js" : "js/cinematic.js";
+      cinematic.defer = true;
+      document.head.appendChild(cinematic);
+    }
   });
 })();
